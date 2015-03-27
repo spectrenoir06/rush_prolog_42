@@ -50,6 +50,12 @@ enfant_de(valerie, loic).
 
 enfant_de(jacques, jules).
 
+ancetre_de(X, Y) :- enfant_de(Y, X).
+
+ancetre_de(X, Z) :- enfant_de(Y, X), ancetre_de(Y, Z).
+
 beaupere_de(X, Y) :- (mari_de(Z, Y) ; femme_de(Z, Y)), enfant_de(Z, X), homme(X).
 bellemere_de(X, Y) :- (mari_de(Z, Y) ; femme_de(Z, Y)), enfant_de(Z, X), femme(X).
+
+
 
