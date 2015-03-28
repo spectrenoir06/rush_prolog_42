@@ -31,7 +31,7 @@ indice_2([(suedois, _, _, _, chiens) |_]).
 indice_2([_|T]) :- indice_2(T).
 
 % Le Danois boit du the
-indice_3([(danois, _, the, _, _)] |_).
+indice_3([(danois, _, the, _, _) |_]).
 indice_3([_|T]) :- indice_3(T).
 
 % La maison verte est a gauche de la maison blanche
@@ -51,10 +51,10 @@ indice_7([(_, jaune, _, dunhill, _) |_]).
 indice_7([_|T]) :- indice_7(T).
 
 % La personne qui vit dans la maison du centre boit du lait
-indice_8
+indice_8(Persos) :- perso(3, Persos, (_, _, lait, _, _)).
 
 % Le Norvegien habite dans la premiere maison
-indice_9
+indice_9(Persos) :- perso(1, Persos, (norvegien, _, _, _, _)).
 
 % L homme qui fume des blends vit a cote de celui qui a des chats
 indice_10([(_, _, _, blend, _), (_, _, _, _, chats) |_]).
@@ -75,11 +75,34 @@ indice_13([(allemand, _, _, prince, _) |_]).
 indice_13([_|T]) :- indice_13(T).
 
 % Le Norvegien vit a cote de la maison bleue
-indice_14([(norvegien, _, _, _, _), (_, bleue, _, _, _) |_])
-indice_14([(_, bleue, _, _, _), (norvegien, _, _, _, _) |_])
+indice_14([(norvegien, _, _, _, _), (_, bleue, _, _, _) |_]).
+indice_14([(_, bleue, _, _, _), (norvegien, _, _, _, _) |_]).
 indice_14([_|T]) :- indice_14(T).
 
 % L Homme qui fume des Blend a un voisin qui boit de l'eau
-indice_15
+indice_15([(_, _, _, blend, _), (_, _, eau, _, _) |_]).
+indice_15([(_, _, eau, _, _), (_, _, _, blend, _) |_]).
+indice_15([_|T]) :- indice_15(T).
 
 % Qui a le poisson?
+question([(_, _, _, _, poisson) |_]).
+question([_|T]) :- question(T).
+
+reso(Persos) :-
+	persos(5, Persos),
+	indice_1(Persos),
+	indice_2(Persos),
+	indice_3(Persos),
+	indice_4(Persos),
+	indice_5(Persos),
+	indice_6(Persos),
+	indice_7(Persos),
+	indice_8(Persos),
+	indice_9(Persos),
+	indice_10(Persos),
+	indice_11(Persos),
+	indice_12(Persos),
+	indice_13(Persos),
+	indice_14(Persos),
+	indice_15(Persos),
+	question(Persos).
